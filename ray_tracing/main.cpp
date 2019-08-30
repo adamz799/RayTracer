@@ -55,7 +55,6 @@ vec4 color(const ray& r, const BVHNode *world, HitableObj *light_shape, int dept
 	}
 	else
 	{
-		//return vec4(0.18f,0.0f);
 		vec4 dir = r.direction().unit();
 		float t = 0.5*(dir.y() + 1.0);
 		return 0.25*((1. - t)*vec4(1., 1., 1.) + t * vec4(0.5, 0.7, 1.));
