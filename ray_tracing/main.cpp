@@ -22,7 +22,6 @@
 
 int width = 800, height = 600;
 
-//int width = 1040, height = 650;
 int ns = 1600;
 bool quit = false;
 
