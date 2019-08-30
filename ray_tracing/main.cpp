@@ -80,12 +80,6 @@ HitableList *random_scene()
 				float radius = 0.15 + 0.05*randf();
 				if (choose_mat < 0.65)
 				{
-					/*if (choose_mat < 0.2) {
-						list[i++] = new MovingSphere(center, center + vec3(0, 0.3*randf(), 0), 0, 1, radius, new Lambertian(new NoiseTexture(4.5+randf())));
-					}
-					else {
-						list[i++] = new MovingSphere(center, center + vec3(0, 0.3*randf(), 0), 0, 1, radius, new Lambertian(new ConstantTexture(vec3(randf(), randf(), randf()))));
-					}*/
 					list[i++] = new Sphere(center, radius, new Lambertian(new ConstantTexture(vec3(randf(), randf(), randf()))));
 
 				}
@@ -154,10 +148,8 @@ int WINAPI WinMain(HINSTANCE hinstance, HINSTANCE hprevinstance, LPSTR lpcmdline
 
 	BVHNode *scene = new BVHNode(world->list, world->list_size, 0, 0);
 
-	//vec3 ori(15.,1.8,3.), look_at(2., 0.75, 0.35) , up(0., 1., 0.) ;
 	vec3 ori(3.5, 3.8, 25.), look_at(0.f, 0.65f, 0.35f), up(0.f, 1.f, 0.f);
 	float focus_distance = (look_at - ori).length();
-	//Camera init_camera(ori, look_at,up, 145.f, float(width) / float(height));
 	FocusCamera init_camera(ori, look_at, up, 145.f, float(width) / float(height), 0.10f, focus_distance);
 
 	Buffer buffer(width, height);
@@ -205,7 +197,6 @@ int WINAPI WinMain(HINSTANCE hinstance, HINSTANCE hprevinstance, LPSTR lpcmdline
 			TranslateMessage(&msg);
 			DispatchMessage(&msg);
 		}
-		//buffer.clear(0.f);
 		device.draw(buffer);
 	}
 

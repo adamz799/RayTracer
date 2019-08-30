@@ -13,6 +13,27 @@ public:
 };
 
 
+class HitablePDF :public PDF {
+public:
+	vec4 ori;
+	HitableObj *ptr;
+
+	HitablePDF() {}
+
+	HitablePDF(HitableObj *p, const vec4 &o) {
+		ptr = p;
+		ori = o;
+	}
+
+	virtual float value(const vec4 &dir) const {
+		return ptr->pdf_value(ori, dir);
+	}
+	virtual vec4 generate() const {
+		return ptr->random(ori);
+	}
+
+};
+
 class CosinePDF :public PDF {
 public:
 	onb uvw;
@@ -29,26 +50,6 @@ public:
 };
 
 
-//class HitablePDF :public PDF {
-//public:
-//	vec4 ori;
-//	HitableObj *ptr;
-//
-//	HitablePDF() {}
-//
-//	HitablePDF(HitableObj *p, const vec4 &o){
-//		ptr = p;
-//		ori = o;
-//	}
-//
-//	virtual float value(const vec4 &dir) const{
-//		return ptr->pdf_value(ori, dir);
-//	}
-//	virtual vec4 generate() const {
-//		return ptr->random(ori);
-//	}
-//
-//};
 
 
 class MixPDF :public PDF {
