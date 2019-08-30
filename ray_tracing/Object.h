@@ -435,6 +435,7 @@ public:
 			vec4 o = ori;
 			for (int i = 0; i < 3; ++i) {
 				if (o[i] > temp[i]) { std::swap(o[i], temp[i]); }
+				if (temp[i] - o[i] < 1e-6) { temp[i] += 1e-5; }
 			}
 			aabb_box = aabb(o, temp);
 			box = aabb_box;

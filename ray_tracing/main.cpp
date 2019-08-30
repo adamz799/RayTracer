@@ -66,7 +66,7 @@ HitableList *random_scene()
 	HitableObj **list = new HitableObj*[n + 1];
 
 	Texture *checker = new CheckerTexture(new ConstantTexture(vec3(0.2, 0.3, 0.5)), new ConstantTexture(vec3(0.9f)));
-	list[0] = new Sphere(vec3(0., -1000, 0.), 1000, new Lambertian(checker));
+	list[0] = new Parallelogram(vec4(-500, 0, 500), vec4(1000, 0, 0), vec4(0, -1e-5, -1000), new Lambertian(checker));
 	list[1] = new Parallelogram(vec4(-4.f, 2.8f, -5.f), vec4(6.f, 6.f, 0.f), vec4(0.0f, 0.0f, 6.0f), new DiffuseLight(new ConstantTexture(vec4(6.f))));
 	int i = 2;
 	for (int a = -7; a < 7; ++a)
