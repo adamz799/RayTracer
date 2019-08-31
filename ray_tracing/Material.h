@@ -36,7 +36,7 @@ public:
 		return true;
 	}
 
-	virtual float scattering_pdf(const ray &r_in, const hit_record &rec, const ray &scattered)const{
+	virtual float scattering_pdf(const ray &r_in, const hit_record &rec, const ray &scattered)const {
 		float cosine = dot(rec.normal, scattered.direction().unit());
 		if (cosine < 0) { return 0; }
 		return cosine / M_PI;
@@ -49,14 +49,13 @@ public:
 	float fuzz;
 	Metal(const vec4 &a, float f) : albedo(a) { fuzz = (f < 1.) ? f : 1.; };
 	virtual bool scatter(const ray &r_in, const hit_record &rec, scatter_record &srec)const {
-		{
-			vec4 reflected = reflect(r_in.direction().unit(), rec.normal);
-			srec.specular_ray = ray(rec.p, reflected + fuzz * random_in_unit_sphere());
-			srec.attenuation = albedo;
-			srec.is_specular = true;
-			srec.pdf_ptr = NULL;
-			return true;
-		}
+		vec4 reflected = reflect(r_in.direction().unit(), rec.normal);
+		srec.specular_ray = ray(rec.p, reflected + fuzz * random_in_unit_sphere());
+		srec.attenuation = albedo;
+		srec.is_specular = true;
+		srec.pdf_ptr = NULL;
+		return true;
+
 	};
 };
 
@@ -120,7 +119,7 @@ class DiffuseLight : public Material {
 public:
 	Texture * emit;
 
-	DiffuseLight(Texture *a): emit(a){}
+	DiffuseLight(Texture *a) : emit(a) {}
 	virtual vec4 emitted(const ray &r, hit_record &rec, float u, float v, const vec4 &p)const {
 		return emit->value(u, v, p);
 	}
@@ -132,7 +131,7 @@ class Isotropic : public Material {
 public:
 	Texture *albedo;
 
-	Isotropic(Texture *a):albedo(a){}
+	Isotropic(Texture *a) :albedo(a) {}
 
 	virtual bool scatter(const ray &r_in, const hit_record &rec, scatter_record &srec)const {
 		srec.is_specular = true;

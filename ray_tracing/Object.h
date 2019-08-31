@@ -448,12 +448,12 @@ public:
 		return true;
 	}
 
-	/*virtual float pdf_value(const vec4 &o, const vec4 &v) {
-		hit_record rec;
-		if (this->hit(ray(o, v), 0.001, FLT_MAX, rec)) {
-			float area = (x1 - x0)*(z1 - z0);
-		}
-	}*/
+	virtual float pdf_value(const vec4 &o, const vec4 &v)const {
+		return 0.0f;
+	}
+	virtual vec4 random(const vec4 &o)const {
+		return vec4(1.f,0.f,0.f);
+	}
 };
 
 class ConstantMedium : public HitableObj {

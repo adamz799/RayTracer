@@ -13,12 +13,11 @@ public:
 	virtual vec4 generate() const = 0;
 };
 
+
 //class HitablePDF : public PDF {
 //public:
 //	vec4 ori;
 //	HitableObj *ptr;
-//
-//	HitablePDF() {}
 //
 //	HitablePDF(HitableObj *p, const vec4 &o) {
 //		ptr = p;
