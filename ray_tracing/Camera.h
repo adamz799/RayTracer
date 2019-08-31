@@ -1,11 +1,10 @@
 #pragma once
 
-#include "head.h"
-
 #ifndef CAMERA
 #define CAMREA
-
-#define M_PI 3.142592657
+#include "vec.h"
+#include "ray.h"
+#include "utils.h"
 
 class Camera {
 public:

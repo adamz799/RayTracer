@@ -36,9 +36,6 @@
     <ClInclude Include="vec.h">
       <Filter>头文件</Filter>
     </ClInclude>
-    <ClInclude Include="model.h">
-      <Filter>头文件</Filter>
-    </ClInclude>
     <ClInclude Include="texture.h">
       <Filter>头文件</Filter>
     </ClInclude>
@@ -52,6 +49,12 @@
       <Filter>头文件</Filter>
     </ClInclude>
     <ClInclude Include="pdf.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
+    <ClInclude Include="utils.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
+    <ClInclude Include="aabb.h">
       <Filter>头文件</Filter>
     </ClInclude>
   </ItemGroup>

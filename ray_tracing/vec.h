@@ -1,9 +1,7 @@
 #pragma once
-#pragma once
 #include <math.h>
 #include <stdlib.h>
 #include <vector>
-#include "head.h"
 #include <intrin.h>
 #define SIMD
 #define M_PI 3.142592657
@@ -954,7 +952,7 @@ void matTranslate(Matrix4x4 &mat, const vec3 &offset) {
 }
 
 void matRotate(Matrix4x4 &mat, float theta, const vec3 &axis) {
-	theta = theta * M_PI / 180.;
+	theta = theta * M_PI / 180.f;
 	float cos_theta = cos(theta), sin_theta = sin(theta);
 	float one_minus_cos = 1.f - cos_theta;
 	vec3 u = axis.unit();

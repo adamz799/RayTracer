@@ -124,13 +124,14 @@
     <ClInclude Include="device.h" />
     <ClInclude Include="head.h" />
     <ClInclude Include="Material.h" />
-    <ClInclude Include="model.h" />
+    <ClInclude Include="aabb.h" />
     <ClInclude Include="noise.h" />
     <ClInclude Include="Object.h" />
     <ClInclude Include="pdf.h" />
     <ClInclude Include="ray.h" />
     <ClInclude Include="stb_image.h" />
     <ClInclude Include="texture.h" />
+    <ClInclude Include="utils.h" />
     <ClInclude Include="vec.h" />
   </ItemGroup>
   <ItemGroup>

@@ -3,8 +3,10 @@
 #ifndef MATERIAL
 #define MATERIAL
 
-#include "head.h"
 #include "vec.h"
+#include "ray.h"
+#include "utils.h"
+#include "head.h"
 #include "texture.h"
 #include "pdf.h"
 

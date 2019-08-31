@@ -49,13 +49,8 @@ public:
 	}
 	NoiseTexture(float s):scale(s){}
 	virtual vec4 value(float u, float v, const vec4 &p) const {
-		//vec3 temp = vec3(1.f)*noise.noise(p*scale);
-
-
 		return (vec4(232,93,25)/255.f)*(2.5f+sin(scale*p.z()+10*noise.turb(p)));
 	}
-
-	
 };
 
 

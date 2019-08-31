@@ -3,7 +3,9 @@
 #ifndef _PDF
 #define _PDF
 
+#include "vec.h"
 #include "Object.h"
+#include "utils.h"
 
 class PDF {
 public:
@@ -11,8 +13,7 @@ public:
 	virtual vec4 generate() const = 0;
 };
 
-
-//class HitablePDF :public PDF {
+//class HitablePDF : public PDF {
 //public:
 //	vec4 ori;
 //	HitableObj *ptr;
@@ -72,9 +73,4 @@ public:
 
 #endif // !_PDF
 
-struct scatter_record {
-	ray specular_ray;
-	bool is_specular;
-	vec4 attenuation;
-	PDF *pdf_ptr;
-};
+

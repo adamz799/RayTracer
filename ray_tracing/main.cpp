@@ -15,6 +15,7 @@
 #include "buffer.h"
 #include "Object.h"
 #include "Camera.h"
+#include "ray.h"
 #include "Material.h"
 #include "texture.h"
 #include "pdf.h"

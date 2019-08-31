@@ -2,8 +2,10 @@
 
 #ifndef BUFFER
 #define BUFFER
-#include "head.h"
+
 #include <vector>
+#include "head.h"
+#include "utils.h"
 
 class Buffer {
 public:

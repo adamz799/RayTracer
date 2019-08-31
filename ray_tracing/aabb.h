@@ -4,7 +4,9 @@
 
 #include <stdlib.h>
 #include <math.h>
-#include "head.h"
+#include "vec.h"
+#include "ray.h"
+#include "utils.h"
 
 
 class aabb {

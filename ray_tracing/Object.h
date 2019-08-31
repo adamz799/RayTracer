@@ -1,8 +1,8 @@
 #pragma once
 
-#include "head.h"
+#include "utils.h"
 #include "Material.h"
-#include "model.h"
+#include "aabb.h"
 
 #ifndef OBJ
 #define OBJ
@@ -11,8 +11,8 @@ class HitableObj {
 public:
 	virtual bool hit(const ray &r, float t_min, float t_max, hit_record &rec) const = 0;
 	virtual bool bounding_box(float t0, float t1, aabb &box) = 0;
-	virtual float pdf_value(const vec4 &o, const vec4 &v)const {return 0.0;}
-	virtual vec4 random(const vec4 &o)const { return vec4(1, 0, 0); }
+	virtual float pdf_value(const vec4 &o, const vec4 &v)const = 0;
+	virtual vec4 random(const vec4 &o)const = 0;
 };
 
 

@@ -3,16 +3,9 @@
 #ifndef NOISE
 #define NOISE
 
-#include "vec.h"
 #include <math.h>
+#include "vec.h"
 
-//static float* perlin_generate() {
-//	float *p = new float[256];
-//	for (int i = 0; i < 256; ++i) {
-//		p[i] = randf();
-//	}
-//	return p;
-//}
 
 inline float hermite(float f) {
 	return f * f*(3.f - 2.f * f);

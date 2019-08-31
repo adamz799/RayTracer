@@ -6,7 +6,6 @@
 #include <windows.h>
 #include <WinUser.h>
 #include "buffer.h"
-#include "head.h"
 
 #define WNDCLASSNAME "WINCLASS2"
 
