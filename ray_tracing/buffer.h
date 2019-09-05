@@ -1,128 +1,43 @@
 #pragma once
 
-#ifndef BUFFER
-#define BUFFER
-
 #include <vector>
 #include "head.h"
 #include "utils.h"
 
-class Buffer {
+#ifndef _BUFFER_
+#define _BUFFER_
+
+class Buffer
+{
 public:
-	Color * ptr;//RGB in float
+	vec4* ptr;//RGBA in float
 	int width, height;
-	Color operator[](int i) const { return ptr[i]; }
-	Color& operator[](int i) { return ptr[i]; }
+	vec4 operator[](int i) const { return ptr[i]; }
+	vec4& operator[](int i) { return ptr[i]; }
 
-	Buffer(int _width, int _height) {
-		ptr = NULL;
-		try {
-			ptr = new Color[_width*_height];
-		}
-		catch (std::bad_alloc) {
-			std::cout << "Bad alloc: memory alloc failed!" << std::endl;
-			ptr = NULL;
+	Buffer();
+	Buffer(int _width, int _height);
+	~Buffer();
 
-		}
-		if (ptr) {
-			memset(ptr, 0, sizeof(Color)*_width*_height);
-			width = _width;
-			height = _height;
-		}
-	}
-
-	void resize(int _width, int _height) {
-		Color *temp = ptr;
-		try {
-			ptr = new Color[_width*_height];
-		}
-		catch (std::bad_alloc) {
-			std::cout << "Bad alloc: resize failed!" << std::endl;
-			ptr = temp;
-			return;
-		}
-		if (!ptr) {
-			ptr = temp;
-		}
-		else {
-			memset(ptr, 0, sizeof(Color)*_width*_height);
-			width = _width;
-			height = _height;
-			delete[] temp;
-		}
-	}
-
-	~Buffer() {
-		memset(ptr, 0, sizeof(Color)*width*height);
-		delete[] ptr;
-		ptr = NULL;
-	}
-
-	void clear(float v) {
-		int *t = (int *)&v;
-		memset(ptr, *t, sizeof(Color)*width*height);
-	}
+	void resize(int _width, int _height);
+	void setValue(float v);
 };
 
-class DepthBuffer {
+class DepthBuffer 
+{
 public:
-	float * ptr;//Depth in float
+	float* ptr;//Depth in float
 	int width, height;
 	float operator[](int i) const { return ptr[i]; }
 	float& operator[](int i) { return ptr[i]; }
 
-	DepthBuffer() { ptr = NULL; width = height = -1; }
-	DepthBuffer(int _width, int _height) {
-		ptr = NULL;
-		try {
-			ptr = new float[_width*_height];
-		}
-		catch (std::bad_alloc) {
-			std::cout << "Bad alloc: memory alloc failed!" << std::endl;
-			ptr = NULL;
+	DepthBuffer();
+	DepthBuffer(int _width, int _height);
+	~DepthBuffer();
 
-		}
-		if (ptr) {
-			std::fill(ptr, ptr + _width * _height, -2.f);
-			//memset(ptr, 0, sizeof(float)*_width*_height);
-			width = _width;
-			height = _height;
-		}
-	}
-
-	void resize(int _width, int _height) {
-		float *temp = ptr;
-		try {
-			ptr = new float[_width*_height];
-		}
-		catch (std::bad_alloc) {
-			std::cout << "Bad alloc: resize failed!" << std::endl;
-			ptr = temp;
-			return;
-		}
-		if (!ptr) {
-			ptr = temp;
-		}
-		else {
-			std::fill(ptr, ptr + _width * _height, -2.f);
-			width = _width;
-			height = _height;
-			delete[] temp;
-		}
-	}
-
-	~DepthBuffer() {
-
-		memset(ptr, 0, sizeof(float)*width*height);
-		delete[] ptr;
-		ptr = NULL;
-	}
-
-	void clear(float v) {
-		std::fill(ptr, ptr + width * height, v);
-	}
+	void resize(int _width, int _height);
+	void setValue(float v);
 };
 
-
-#endif // !BUFFER
+#endif // !_BUFFER_
 

@@ -1,13 +1,14 @@
 #pragma once
-#ifndef AABB
-#define AABB
+
 
 #include <stdlib.h>
 #include <math.h>
-#include "vec.h"
+//#include "vec.h"
 #include "ray.h"
 #include "utils.h"
 
+#ifndef _AABB_
+#define _AABB_
 
 class aabb {
 public:
@@ -76,4 +77,4 @@ aabb surrounding_box(aabb box0, aabb box1) {
 	return aabb(smaller, bigger);
 }
 
-#endif // !AABB
+#endif // !_AABB_

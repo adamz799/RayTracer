@@ -1,8 +1,5 @@
 #pragma once
 
-#ifndef HEAD
-#define HEAD
-
 #include <math.h>
 #include <stdlib.h>
 #include <iostream>
@@ -10,6 +7,10 @@
 #include <WinUser.h>
 #include "vec.h"
 #include "ray.h"
+
+#ifndef _HEAD_
+#define _HEAD_
+
 
 
 struct Color {
@@ -69,8 +70,4 @@ public:
 	}
 };
 
-
-
-
-#endif // !HEAD
-
+#endif // !_HEAD_

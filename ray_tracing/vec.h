@@ -1,14 +1,17 @@
 #pragma once
+
 #include <math.h>
 #include <stdlib.h>
 #include <vector>
 #include <intrin.h>
+#include <iostream>
+
 #define SIMD
 #define M_PI 3.142592657
 
 
-#ifndef VEC2
-#define VEC2
+#ifndef _VEC2_
+#define _VEC2_
 
 class vec2 {
 public:
@@ -118,10 +121,10 @@ inline float cross(vec2 const &e1, vec2 const &e2)
 }
 
 
-#endif // !VEC2
+#endif // !_VEC2_
 
-#ifndef VEC3
-#define VEC3
+#ifndef _VEC3_
+#define _VEC3_
 
 class vec3 {
 public:
@@ -248,11 +251,11 @@ inline vec3 cross(vec3 const &e1, vec3 const &e2)
 	);
 }
 
-#endif // !VEC3
+#endif // !_VEC2_
 
 
-#ifndef VEC4
-#define VEC4
+#ifndef _VEC4_
+#define _VEC4_
 
 class vec4 {
 public:
@@ -555,12 +558,11 @@ inline float dot(vec4 const &e1, vec4 const &e2)
 #endif // SIMD
 
 
-#endif // !VEC4
+#endif // !_VEC2_
 
 
-
-#ifndef MATRIX
-#define MARTIX
+#ifndef _MATRIX_
+#define _MATRIX_
 
 bool gauss_jordan(float *a, int n) {
 	//d用于全选主元过程
@@ -1007,6 +1009,4 @@ void applyTrans(Matrix4x4 & model_matrix, std::vector<vec4> &pointArray) {
 #endif // SIMD
 
 
-#endif // !MATRIX
-
-
+#endif // !_MATRIX_

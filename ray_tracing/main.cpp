@@ -1,3 +1,5 @@
+#pragma once
+
 #define _CRT_SECURE_NO_DEPRECATE
 
 #include <stdio.h>
@@ -12,7 +14,7 @@
 #include "head.h"
 #include "vec.h"
 #include "device.h"
-#include "buffer.h"
+#include "Buffer.h"
 #include "Object.h"
 #include "Camera.h"
 #include "ray.h"
@@ -22,7 +24,6 @@
 
 
 int width = 800, height = 600;
-
 int ns = 1600;
 bool quit = false;
 
@@ -116,10 +117,10 @@ void writeToPPM(const Buffer &buffer, const char* name) {
 	{
 		for (int i = 0; i < buffer.width; ++i)
 		{
-			Color *p = buffer.ptr + buffer.width * j + i;
-			int ir = int(p->R * 255);
-			int ig = int(p->G * 255);
-			int ib = int(p->B * 255);
+			vec4 *p = buffer.ptr + buffer.width * j + i;
+			int ir = int(p->r() * 255);
+			int ig = int(p->g() * 255);
+			int ib = int(p->b() * 255);
 			//printf("x:%d y:%d \n", i, j);
 			fprintf(f, "%d %d %d\n", ir, ig, ib);
 		}
@@ -163,7 +164,7 @@ int WINAPI WinMain(HINSTANCE hinstance, HINSTANCE hprevinstance, LPSTR lpcmdline
 			for (int i = 0; i < width; ++i)
 			{
 				int offset = buffer.width*j + i;
-				vec4 col((*(buffer.ptr + offset)).R, (*(buffer.ptr + offset)).G, (*(buffer.ptr + offset)).B);
+				vec4 col((*(buffer.ptr + offset)));
 				float delta_i = randf();
 				float delta_j = randf();
 				float u = float(i + delta_i) / float(width) * 2 - 1.;
@@ -175,9 +176,10 @@ int WINAPI WinMain(HINSTANCE hinstance, HINSTANCE hprevinstance, LPSTR lpcmdline
 				for (int i = 0; i < 3; ++i) {
 					if (col[i] > 1) { col[i] = 1; }
 				}
-				(*(buffer.ptr + offset)).R = col.r();
-				(*(buffer.ptr + offset)).G = col.g();
-				(*(buffer.ptr + offset)).B = col.b();
+				(*(buffer.ptr + offset)) = col;
+				/*(*(buffer.ptr + offset))[0] = col.r();
+				(*(buffer.ptr + offset))[1] = col.g();
+				(*(buffer.ptr + offset))[2] = col.b();*/
 
 				//stop = time(NULL);
 				//printf("Use Time:%ld\n", (stop - start));

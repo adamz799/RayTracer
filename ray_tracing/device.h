@@ -1,11 +1,12 @@
 #pragma once
 
-#ifndef DEVICE
-#define DEVICE
-
 #include <windows.h>
 #include <WinUser.h>
-#include "buffer.h"
+#include "Buffer.h"
+
+#ifndef _DEVICE_
+#define _DEVICE_
+
 
 #define WNDCLASSNAME "WINCLASS2"
 
@@ -59,13 +60,13 @@ public:
 
 	void draw(const Buffer &buffer) {
 		COLORREF *arr = new COLORREF[buffer.width*buffer.height];
-		Color *c;
+		vec4 *c;
 		for (int y = 0; y < buffer.height; ++y) {
 			int offset_y = (buffer.height - 1 - y) * buffer.width;
 			int offset_y1 = y * buffer.width;
 			for (int x = 0; x < buffer.width; ++x) {
 				c = buffer.ptr + offset_y + x;
-				*(arr + offset_y1 + x) = RGB(int(c->B*255), int(c->G * 255), int(c->R * 255));
+				*(arr + offset_y1 + x) = RGB(int(c->b()*255), int(c->g() * 255), int(c->r() * 255));
 				//SetPixel(hdc, x, buffer.height-y, RGB(int(c->R), int(c->G), int(c->B)));
 			}
 
@@ -83,7 +84,7 @@ public:
 
 
 
-#endif // !DEVICE
+#endif // !_DEVICE_
 
 
 

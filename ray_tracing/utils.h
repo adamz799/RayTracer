@@ -1,15 +1,11 @@
 #pragma once
 
-#ifndef UTILS
-#define UTILS
-
 #include <windows.h>
 #include <WinUser.h>
-
 #include "vec.h"
 
-
-
+#ifndef _UTILS_
+#define _UTILS_
 
 LRESULT CALLBACK WinProc(HWND hwnd, UINT msg, WPARAM wparam, LPARAM lparam)
 {
@@ -112,4 +108,4 @@ inline vec4 de_nan(const vec4 &c) {
 }
 
 
-#endif // !UTILS
+#endif // !_UTILS_

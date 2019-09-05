@@ -4,8 +4,8 @@
 #include "Material.h"
 #include "aabb.h"
 
-#ifndef OBJ
-#define OBJ
+#ifndef _OBJECT_
+#define _OBJECT_
 
 class HitableObj {
 public:
@@ -515,4 +515,4 @@ public:
 };
 
 
-#endif // !OBJ
+#endif // !_OBJECT_

@@ -1,10 +1,11 @@
 #pragma once
 
-#ifndef NOISE
-#define NOISE
-
 #include <math.h>
 #include "vec.h"
+#include "utils.h"
+
+#ifndef _NOISE_
+#define _NOISE_
 
 
 inline float hermite(float f) {
@@ -121,5 +122,5 @@ int * Perlin::perm_x = perlin_generate_perm();
 int * Perlin::perm_y = perlin_generate_perm();
 int * Perlin::perm_z = perlin_generate_perm();
 
-#endif // !NOISE
+#endif // !_NOISE_
 

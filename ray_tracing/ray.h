@@ -1,9 +1,9 @@
 #pragma once
 
-#ifndef RAY
-#define RAY
-
 #include "vec.h"
+
+#ifndef _RAY_
+#define _RAY_
 
 class ray {
 public:
@@ -19,4 +19,4 @@ public:
 
 
 
-#endif // !Ray
+#endif // !_RAY_

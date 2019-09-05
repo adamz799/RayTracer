@@ -1,14 +1,13 @@
 #pragma once
 
-#ifndef TEXTURE
-#define TEXTURE
-
-#define STB_IMAGE_IMPLEMENTATION
-#include "stb_image.h"
-
 #include <math.h>
 #include "vec.h"
 #include "noise.h"
+#include "stb_image.h"
+
+#ifndef _TEXTURE_
+#define _TEXTURE_
+
 
 class Texture {
 public:
@@ -91,5 +90,5 @@ public:
 	}
 };
 
-#endif // !TEXTURE
+#endif // !_TEXTURE_
 

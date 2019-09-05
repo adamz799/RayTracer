@@ -1,10 +1,12 @@
 #pragma once
 
-#ifndef CAMERA
-#define CAMREA
 #include "vec.h"
 #include "ray.h"
 #include "utils.h"
+
+#ifndef _CAMERA_
+#define _CAMERA_
+
 
 class Camera {
 public:
@@ -101,5 +103,5 @@ public:
 	}
 };
 
-#endif // !CAMERA
+#endif // !_CAMERA_
 

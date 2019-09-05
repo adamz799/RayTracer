@@ -30,9 +30,6 @@
     <ClInclude Include="device.h">
       <Filter>头文件</Filter>
     </ClInclude>
-    <ClInclude Include="buffer.h">
-      <Filter>头文件</Filter>
-    </ClInclude>
     <ClInclude Include="vec.h">
       <Filter>头文件</Filter>
     </ClInclude>
@@ -57,9 +54,21 @@
     <ClInclude Include="aabb.h">
       <Filter>头文件</Filter>
     </ClInclude>
+    <ClInclude Include="Buffer.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="main.cpp">
+      <Filter>源文件</Filter>
+    </ClCompile>
+    <ClCompile Include="Material.cpp">
+      <Filter>源文件</Filter>
+    </ClCompile>
+    <ClCompile Include="Buffer.cpp">
+      <Filter>源文件</Filter>
+    </ClCompile>
+    <ClCompile Include="t.cpp">
       <Filter>源文件</Filter>
     </ClCompile>
   </ItemGroup>

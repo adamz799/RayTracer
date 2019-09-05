@@ -1,11 +1,11 @@
 #pragma once
 
-#ifndef _PDF
-#define _PDF
-
 #include "vec.h"
-#include "Object.h"
+//#include "Object.h"
 #include "utils.h"
+
+#ifndef _PDF_
+#define _PDF_
 
 class PDF {
 public:
@@ -70,6 +70,6 @@ public:
 	}
 };
 
-#endif // !_PDF
+#endif // !_PDF_
 
 
