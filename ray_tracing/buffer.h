@@ -1,6 +1,5 @@
 #pragma once
 
-//#include <vector>
 #include "vec.h"
 
 #ifndef _BUFFER_

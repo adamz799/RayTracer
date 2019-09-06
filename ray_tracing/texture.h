@@ -2,7 +2,7 @@
 
 #include <math.h>
 #include "vec.h"
-#include "noise.h"
+#include "Noise.h"
 #include "stb_image.h"
 
 #ifndef _TEXTURE_

@@ -1,6 +1,6 @@
 #pragma once
 
-//#include "vec.h"
+#include "vec.h"
 #include "ray.h"
 #include "head.h"
 #include "texture.h"
