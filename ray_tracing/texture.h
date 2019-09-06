@@ -28,7 +28,7 @@ public:
 class CheckerTexture : public Texture {
 public:
 	Texture * even, *odd;
-	CheckerTexture(){}
+	CheckerTexture() :even(nullptr), odd(nullptr) {}
 	CheckerTexture(Texture *t0, Texture *t1):even(t0), odd(t1) {}
 	
 	virtual vec4 value(float u, float v, const vec4 &p)const {

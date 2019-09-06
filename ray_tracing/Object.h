@@ -116,7 +116,7 @@ public:
 	HitableObj * left, *right;
 	aabb box;
 
-	BVHNode() {}
+	BVHNode(): left(nullptr), right(nullptr){}
 	BVHNode(HitableObj **l, int n, float time0, float time1) {
 		int axis = int(3 * randf());
 		if (axis == 0) {
@@ -190,8 +190,8 @@ public:
 	aabb aabb_box;
 	bool dirty;
 	Sphere(){}
-	Sphere(vec4 c, float r) : center(c), radius(r) { dirty = true; };
-	Sphere(vec4 c, float r, Material *m_p) : center(c), radius(r), mat_ptr(m_p) { dirty = true; };
+	Sphere(vec4 c, float r) : center(c), radius(r),dirty(true) { };
+	Sphere(vec4 c, float r, Material *m_p) : center(c), radius(r), mat_ptr(m_p), dirty(true) { };
 	
 	virtual bool hit(const ray &r, float t_min, float t_max, hit_record &rec) const
 	{
