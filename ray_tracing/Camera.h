@@ -29,8 +29,8 @@ public:
 		U = cross(W, up).unit();
 		V = cross(U, W);
 		
-		float theta = v_fov * M_PI / 180.;
-		float half_height = tan(theta / 2.);
+		float theta = v_fov * M_PI / 180.f;
+		float half_height = tan(theta / 2.f);
 		float half_width = aspect * half_height;
 		screen_center = look_at_;
 		horizontal = half_width * U;
@@ -50,13 +50,13 @@ public:
 		origin = ori;
 		look_at = look_at_;
 		up = vup;
-		lens_radius = aperture / 2.;
+		lens_radius = aperture / 2.f;
 		W = (look_at - origin).unit();
 		U = cross(W, up).unit();
 		V = cross(U, W);
 
-		float theta = v_fov * M_PI / 180.;
-		float half_height = tan(theta / 2.);
+		float theta = v_fov * M_PI / 180.f;
+		float half_height = tan(theta / 2.f);
 		float half_width = aspect * half_height;
 		screen_center = origin + focus_dist * W;
 		horizontal = half_width * U;

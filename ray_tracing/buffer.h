@@ -1,8 +1,7 @@
 #pragma once
 
-#include <vector>
-#include "head.h"
-#include "utils.h"
+//#include <vector>
+#include "vec.h"
 
 #ifndef _BUFFER_
 #define _BUFFER_
@@ -15,7 +14,7 @@ public:
 	vec4 operator[](int i) const { return ptr[i]; }
 	vec4& operator[](int i) { return ptr[i]; }
 
-	Buffer();
+	Buffer() :width(0), height(0), ptr(nullptr) {}
 	Buffer(int _width, int _height);
 	~Buffer();
 
@@ -23,7 +22,7 @@ public:
 	void setValue(float v);
 };
 
-class DepthBuffer 
+class DepthBuffer
 {
 public:
 	float* ptr;//Depth in float
@@ -31,7 +30,7 @@ public:
 	float operator[](int i) const { return ptr[i]; }
 	float& operator[](int i) { return ptr[i]; }
 
-	DepthBuffer();
+	DepthBuffer() :ptr(nullptr), width(-1), height(-1) {}
 	DepthBuffer(int _width, int _height);
 	~DepthBuffer();
 

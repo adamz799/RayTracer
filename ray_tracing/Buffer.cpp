@@ -1,10 +1,9 @@
 #pragma once
 
+#include <stdlib.h>
+#include <iostream>
+#include "vec.h"
 #include "Buffer.h"
-
-Buffer::Buffer():width(0),height(0),ptr(nullptr)
-{
-}
 
 Buffer::Buffer(int _width, int _height)
 {
@@ -61,17 +60,15 @@ void Buffer::setValue(float v)
 
 
 
-DepthBuffer::DepthBuffer():ptr(nullptr),width(-1),height(-1){}
-
 DepthBuffer::DepthBuffer(int _width, int _height)
 {
-	ptr = NULL;
+	ptr = nullptr;
 	try {
 		ptr = new float[_width * _height];
 	}
 	catch (std::bad_alloc) {
 		std::cout << "Bad alloc: memory alloc failed!" << std::endl;
-		ptr = NULL;
+		ptr = nullptr;
 
 	}
 	if (ptr) {

@@ -120,6 +120,7 @@
     <ClCompile Include="main.cpp" />
     <ClCompile Include="Material.cpp" />
     <ClCompile Include="t.cpp" />
+    <ClCompile Include="vec.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Buffer.h" />
@@ -128,7 +129,6 @@
     <ClInclude Include="head.h" />
     <ClInclude Include="Material.h" />
     <ClInclude Include="aabb.h" />
-    <ClInclude Include="noise.h" />
     <ClInclude Include="Object.h" />
     <ClInclude Include="pdf.h" />
     <ClInclude Include="ray.h" />

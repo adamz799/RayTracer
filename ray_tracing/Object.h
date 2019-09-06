@@ -52,6 +52,7 @@ public:
 			}
 			else {return false;}
 		}
+		return true;
 	}
 
 	virtual float pdf_value(const vec4 &o, const vec4 &v)const { 
@@ -150,6 +151,7 @@ public:
 			if (hit_left&&hit_right) {
 				if (left_record.t < right_record.t) { rec = left_record; }
 				else { rec = right_record; }
+				return true;
 			}
 			else if (hit_left) {
 				rec = left_record;
@@ -229,6 +231,7 @@ public:
 		{
 			return false;
 		}
+		return false;
 	}
 	
 	virtual bool bounding_box(float t0, float t1, aabb &box) {
@@ -252,9 +255,9 @@ public:
 
 	virtual float pdf_value(const vec4 &o, const vec4 &v)const {
 		hit_record rec;
-		if (this->hit(ray(o, v), 1e-6, 1e6, rec)) {
+		if (this->hit(ray(o, v), 1e-6f, 1e6f, rec)) {
 			float cos_theta_max = sqrt(1.f - radius * radius / (center - o).square_length());
-			float solid_angle = 2 * M_PI*(1.f - cos_theta_max);
+			float solid_angle = 2.f * M_PI*(1.f - cos_theta_max);
 			return 1 / solid_angle;
 		}
 		else { return 0; }

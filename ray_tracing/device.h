@@ -3,6 +3,7 @@
 #include <windows.h>
 #include <WinUser.h>
 #include "Buffer.h"
+#include "utils.h"
 
 #ifndef _DEVICE_
 #define _DEVICE_

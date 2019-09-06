@@ -1,11 +1,9 @@
 #pragma once
 
-#include "vec.h"
+//#include "vec.h"
 #include "ray.h"
-#include "utils.h"
 #include "head.h"
 #include "texture.h"
-#include "pdf.h"
 
 #ifndef _MATERIAL_
 #define _MATERIAL_

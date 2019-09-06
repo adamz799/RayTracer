@@ -1,7 +1,12 @@
 #pragma once
 
 #include "Material.h"
-
+#include "vec.h"
+#include "ray.h"
+#include "utils.h"
+#include "head.h"
+#include "texture.h"
+#include "pdf.h"
 
 Lambertian::Lambertian(Texture* a) : albedo(a) {};
 
@@ -20,7 +25,7 @@ float Lambertian::scattering_pdf(const ray& r_in, const hit_record& rec, const r
 
 
 
-Metal::Metal(const vec4& a, float f) : albedo(a) { fuzz = (f < 1.) ? f : 1.; }
+Metal::Metal(const vec4& a, float f) : albedo(a) { fuzz = (f < 1.f) ? f : 1.f; }
 
 bool Metal::scatter(const ray& r_in, const hit_record& rec, scatter_record& srec)const {
 	vec4 reflected = reflect(r_in.direction().unit(), rec.normal);

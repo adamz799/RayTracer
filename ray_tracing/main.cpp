@@ -11,13 +11,13 @@
 #include <io.h>
 #include <fcntl.h>
 #include <time.h>
-#include "head.h"
 #include "vec.h"
+#include "ray.h"
+#include "Camera.h"
 #include "device.h"
+#include "head.h"
 #include "Buffer.h"
 #include "Object.h"
-#include "Camera.h"
-#include "ray.h"
 #include "Material.h"
 #include "texture.h"
 #include "pdf.h"
@@ -57,8 +57,8 @@ vec4 color(const ray& r, const BVHNode *world, HitableObj *light_shape, int dept
 	else
 	{
 		vec4 dir = r.direction().unit();
-		float t = 0.5*(dir.y() + 1.0);
-		return 0.25*((1. - t)*vec4(1., 1., 1.) + t * vec4(0.5, 0.7, 1.));
+		float t = 0.5f*(dir.y() + 1.0f);
+		return 0.25f*((1.f - t)*vec4(1.f, 1.f, 1.f) + t * vec4(0.5f, 0.7f, 1.f));
 	}
 }
 
@@ -87,11 +87,11 @@ HitableList *random_scene()
 				}
 				else if (choose_mat < 0.85)
 				{
-					list[i++] = new Sphere(center, radius, new Metal(0.85*(vec3(randf(), randf(), randf())), 0.4*randf()));
+					list[i++] = new Sphere(center, radius, new Metal(0.85f*(vec3(randf(), randf(), randf())), 0.4*randf()));
 				}
 				else
 				{
-					list[i++] = new Sphere(center, radius, new Dielectric(randf()*0.8 + 1.2));
+					list[i++] = new Sphere(center, radius, new Dielectric(randf()*0.8f + 1.2f));
 				}
 			}
 		}

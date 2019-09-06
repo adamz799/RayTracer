@@ -57,7 +57,7 @@ public:
 	MixPDF(PDF* p0, PDF *p1) { p[0] = p0, p[1] = p1; }
 
 	virtual float value(const vec4 &dir)const {
-		return 0.5f*p[0]->value(dir) + 0.5*p[1]->value(dir);
+		return 0.5f*p[0]->value(dir) + 0.5f*p[1]->value(dir);
 	}
 
 	virtual vec4 generate() const {

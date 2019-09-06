@@ -79,9 +79,9 @@ public:
 		if (i > width - 1) { i = width - 1; }
 		if (j > height - 1) { j = height - 1; }
 		int offset = nrChannels * i + nrChannels * width*j;
-		float r = int(image[offset]) / 255.0;
-		float g = int(image[offset +1]) / 255.0;
-		float b = int(image[offset +2]) / 255.0;
+		float r = int(image[offset]) / 255.0f;
+		float g = int(image[offset +1]) / 255.0f;
+		float b = int(image[offset +2]) / 255.0f;
 		return vec4(r, g, b);
 	}
 
