@@ -15,74 +15,74 @@
     </Filter>
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="head.h">
+    <ClInclude Include="Source\aabb.h">
       <Filter>头文件</Filter>
     </ClInclude>
-    <ClInclude Include="Object.h">
+    <ClInclude Include="Source\Buffer.h">
       <Filter>头文件</Filter>
     </ClInclude>
-    <ClInclude Include="Camera.h">
+    <ClInclude Include="Source\Camera.h">
       <Filter>头文件</Filter>
     </ClInclude>
-    <ClInclude Include="Material.h">
+    <ClInclude Include="Source\device.h">
       <Filter>头文件</Filter>
     </ClInclude>
-    <ClInclude Include="device.h">
+    <ClInclude Include="Source\head.h">
       <Filter>头文件</Filter>
     </ClInclude>
-    <ClInclude Include="vec.h">
+    <ClInclude Include="Source\Material.h">
       <Filter>头文件</Filter>
     </ClInclude>
-    <ClInclude Include="texture.h">
+    <ClInclude Include="Source\Noise.h">
       <Filter>头文件</Filter>
     </ClInclude>
-    <ClInclude Include="stb_image.h">
+    <ClInclude Include="Source\Object.h">
       <Filter>头文件</Filter>
     </ClInclude>
-    <ClInclude Include="ray.h">
+    <ClInclude Include="Source\pdf.h">
       <Filter>头文件</Filter>
     </ClInclude>
-    <ClInclude Include="pdf.h">
+    <ClInclude Include="Source\ray.h">
       <Filter>头文件</Filter>
     </ClInclude>
-    <ClInclude Include="utils.h">
+    <ClInclude Include="Source\stb_image.h">
       <Filter>头文件</Filter>
     </ClInclude>
-    <ClInclude Include="aabb.h">
+    <ClInclude Include="Source\texture.h">
       <Filter>头文件</Filter>
     </ClInclude>
-    <ClInclude Include="Buffer.h">
+    <ClInclude Include="Source\utils.h">
       <Filter>头文件</Filter>
     </ClInclude>
-    <ClInclude Include="Noise.h">
+    <ClInclude Include="Source\vec.h">
       <Filter>头文件</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="main.cpp">
+    <ClCompile Include="Source\Buffer.cpp">
       <Filter>源文件</Filter>
     </ClCompile>
-    <ClCompile Include="Material.cpp">
+    <ClCompile Include="Source\main.cpp">
       <Filter>源文件</Filter>
     </ClCompile>
-    <ClCompile Include="Buffer.cpp">
+    <ClCompile Include="Source\Material.cpp">
       <Filter>源文件</Filter>
     </ClCompile>
-    <ClCompile Include="t.cpp">
+    <ClCompile Include="Source\Noise.cpp">
       <Filter>源文件</Filter>
     </ClCompile>
-    <ClCompile Include="vec.cpp">
+    <ClCompile Include="Source\t.cpp">
       <Filter>源文件</Filter>
     </ClCompile>
-    <ClCompile Include="Noise.cpp">
+    <ClCompile Include="Source\utils.cpp">
       <Filter>源文件</Filter>
     </ClCompile>
-    <ClCompile Include="utils.cpp">
+    <ClCompile Include="Source\vec.cpp">
       <Filter>源文件</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
-    <Image Include="earth.jpg">
+    <Image Include="Assert\earth.jpg">
       <Filter>资源文件</Filter>
     </Image>
   </ItemGroup>

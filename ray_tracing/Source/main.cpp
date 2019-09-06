@@ -99,7 +99,7 @@ HitableList *random_scene()
 	}
 	float height = 1.0f;
 	list[i++] = new Sphere(vec4(0.f, height, 0.f), height, new Dielectric(1.5));
-	//list[i++] = new Sphere(vec4(-2.0f, height, 0.0f), height, new Lambertian(new ImageTexture("../Assert/earth.jpg")));
+	//list[i++] = new Sphere(vec4(-2.0f, height, 0.0f), height, new Lambertian(new ImageTexture("earth.jpg")));
 	HitableObj *obj = new Sphere(vec4(-2.0f, height, 0.0f), height, NULL);
 	list[i++] = new ConstantMedium(obj, 0.4f, new ConstantTexture(vec4(1.)));
 	list[i++] = new Sphere(vec3(0, height + 2, 0), 0.5*height, new DiffuseLight(new NoiseTexture(5.0)));

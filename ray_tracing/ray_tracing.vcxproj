@@ -116,32 +116,32 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
-    <ClCompile Include="Buffer.cpp" />
-    <ClCompile Include="main.cpp" />
-    <ClCompile Include="Material.cpp" />
-    <ClCompile Include="Noise.cpp" />
-    <ClCompile Include="t.cpp" />
-    <ClCompile Include="utils.cpp" />
-    <ClCompile Include="vec.cpp" />
+    <ClCompile Include="Source\Buffer.cpp" />
+    <ClCompile Include="Source\main.cpp" />
+    <ClCompile Include="Source\Material.cpp" />
+    <ClCompile Include="Source\Noise.cpp" />
+    <ClCompile Include="Source\t.cpp" />
+    <ClCompile Include="Source\utils.cpp" />
+    <ClCompile Include="Source\vec.cpp" />
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="Buffer.h" />
-    <ClInclude Include="Camera.h" />
-    <ClInclude Include="device.h" />
-    <ClInclude Include="head.h" />
-    <ClInclude Include="Material.h" />
-    <ClInclude Include="aabb.h" />
-    <ClInclude Include="Noise.h" />
-    <ClInclude Include="Object.h" />
-    <ClInclude Include="pdf.h" />
-    <ClInclude Include="ray.h" />
-    <ClInclude Include="stb_image.h" />
-    <ClInclude Include="texture.h" />
-    <ClInclude Include="utils.h" />
-    <ClInclude Include="vec.h" />
+    <ClInclude Include="Source\Buffer.h" />
+    <ClInclude Include="Source\Camera.h" />
+    <ClInclude Include="Source\device.h" />
+    <ClInclude Include="Source\head.h" />
+    <ClInclude Include="Source\Material.h" />
+    <ClInclude Include="Source\aabb.h" />
+    <ClInclude Include="Source\Noise.h" />
+    <ClInclude Include="Source\Object.h" />
+    <ClInclude Include="Source\pdf.h" />
+    <ClInclude Include="Source\ray.h" />
+    <ClInclude Include="Source\stb_image.h" />
+    <ClInclude Include="Source\texture.h" />
+    <ClInclude Include="Source\utils.h" />
+    <ClInclude Include="Source\vec.h" />
   </ItemGroup>
   <ItemGroup>
-    <Image Include="earth.jpg" />
+    <Image Include="Assert\earth.jpg" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
