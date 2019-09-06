@@ -1,7 +1,7 @@
 #pragma once
 
 #include "vec.h"
-//#include "Object.h"
+#include "Object.h"
 #include "utils.h"
 
 #ifndef _PDF_
@@ -14,38 +14,25 @@ public:
 };
 
 
-//class HitablePDF : public PDF {
-//public:
-//	vec4 ori;
-//	HitableObj *ptr;
-//
-//	HitablePDF(HitableObj *p, const vec4 &o) {
-//		ptr = p;
-//		ori = o;
-//	}
-//
-//	virtual float value(const vec4 &dir) const {
-//		return ptr->pdf_value(ori, dir);
-//	}
-//	virtual vec4 generate() const {
-//		return ptr->random(ori);
-//	}
-//
-//};
+class HitablePDF : public PDF {
+public:
+	vec4 ori;
+	HitableObj *ptr;
+
+	HitablePDF(HitableObj* p, const vec4& o);
+
+	virtual float value(const vec4& dir) const;
+	virtual vec4 generate() const;
+
+};
 
 class CosinePDF :public PDF {
 public:
 	onb uvw;
-	CosinePDF(const vec4 &normal) { uvw.build(normal); }
-	virtual float value(const vec4 &dir)const  {
-		float cosine = dot(dir.unit(), vec4(uvw.w()));
-		if (cosine > 0) { return cosine / M_PI; }
-		else { return 0; }
-	}
+	CosinePDF(const vec4& normal);
 
-	virtual vec4 generate()const {
-		return uvw.local(random_cosine_direction().toVec3());
-	}
+	virtual float value(const vec4& dir)const;
+	virtual vec4 generate()const;
 };
 
 
@@ -53,21 +40,11 @@ public:
 
 class MixPDF :public PDF {
 public:
-	PDF *p[2];
-	MixPDF(PDF* p0, PDF *p1) { p[0] = p0, p[1] = p1; }
+	PDF* p[2];
+	MixPDF(PDF* p0, PDF* p1);
 
-	virtual float value(const vec4 &dir)const {
-		return 0.5f*p[0]->value(dir) + 0.5f*p[1]->value(dir);
-	}
-
-	virtual vec4 generate() const {
-		if (randf() < 0.5) {
-			return p[0]->generate();
-		}
-		else {
-			return p[1]->generate();
-		}
-	}
+	virtual float value(const vec4& dir)const;
+	virtual vec4 generate() const;
 };
 
 #endif // !_PDF_

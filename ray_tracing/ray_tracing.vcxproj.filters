@@ -80,6 +80,12 @@
     <ClCompile Include="Source\vec.cpp">
       <Filter>源文件</Filter>
     </ClCompile>
+    <ClCompile Include="Source\pdf.cpp">
+      <Filter>源文件</Filter>
+    </ClCompile>
+    <ClCompile Include="Source\Object.cpp">
+      <Filter>源文件</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <Image Include="Assert\earth.jpg">

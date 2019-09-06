@@ -120,6 +120,8 @@
     <ClCompile Include="Source\main.cpp" />
     <ClCompile Include="Source\Material.cpp" />
     <ClCompile Include="Source\Noise.cpp" />
+    <ClCompile Include="Source\Object.cpp" />
+    <ClCompile Include="Source\pdf.cpp" />
     <ClCompile Include="Source\t.cpp" />
     <ClCompile Include="Source\utils.cpp" />
     <ClCompile Include="Source\vec.cpp" />

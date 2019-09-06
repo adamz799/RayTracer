@@ -1,9 +1,8 @@
 #pragma once
 
-
 #include <stdlib.h>
 #include <math.h>
-//#include "vec.h"
+#include "vec.h"
 #include "ray.h"
 #include "utils.h"
 
@@ -65,16 +64,5 @@ public:
 	
 };
 
-aabb surrounding_box(aabb box0, aabb box1) {
-	vec4 smaller(min(box0._min.x(), box1._min.x()),
-		min(box0._min.y(), box1._min.y()),
-		min(box0._min.z(), box1._min.z())
-	);
-	vec4 bigger(max(box0._max.x(), box1._max.x()),
-		max(box0._max.y(), box1._max.y()),
-		max(box0._max.z(), box1._max.z())
-	);
-	return aabb(smaller, bigger);
-}
 
 #endif // !_AABB_
