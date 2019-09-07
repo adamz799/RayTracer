@@ -42,7 +42,7 @@ vec4 color(const ray& r, const BVHNode *world, HitableObj *light_shape, int dept
 			else {
 				/*HitablePDF plight(light_shape, rec.p);
 				MixPDF p(&plight, srec.pdf_ptr);*/
-				auto p = srec.pdf_ptr;
+				std::shared_ptr<PDF> p = srec.pdf_ptr;
 				ray scattered(rec.p, p->generate(), r.time());
 				float pdf = p->value(scattered.direction());
 				return emitted + srec.attenuation*rec.mat_ptr->scattering_pdf(r, rec, scattered) * color(scattered, world, light_shape, depth + 1) / pdf;
@@ -68,7 +68,9 @@ HitableList *random_scene()
 
 	std::shared_ptr<Texture> even= std::make_shared<ConstantTexture>(vec3(0.2, 0.3, 0.5));
 	std::shared_ptr<Texture> odd(new ConstantTexture(vec3(0.9f)));
-	std::shared_ptr<Texture> checker = std::make_shared<CheckerTexture>(even, odd);
+	//Not a good way.
+	Texture* c = new CheckerTexture(even, odd);
+	std::shared_ptr<Texture> checker(c);
 	list[0] = new Parallelogram(vec4(-500, 0, 500), vec4(1000, 0, 0), vec4(0, -1e-5, -1000), std::make_shared<Lambertian>(checker));
 
 	std::shared_ptr<Texture> light = std::make_shared<ConstantTexture>(vec3(6.f));
@@ -186,7 +188,6 @@ int WINAPI WinMain(HINSTANCE hinstance, HINSTANCE hprevinstance, LPSTR lpcmdline
 				
 				//stop = time(NULL);
 				//printf("Use Time:%ld\n", (stop - start));
-				//std::cout << ir << " " << ig << " " << ib << "\n";
 			}
 
 		}
