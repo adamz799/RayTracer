@@ -238,7 +238,8 @@ vec4 Sphere::random(const vec4& o)const {
 
 
 
-MovingSphere::MovingSphere(const vec4& cen0, const vec4& cen1, float t0, float t1, float r, Material* m) {
+MovingSphere::MovingSphere(const vec4& cen0, const vec4& cen1, float t0, float t1, float r, std::shared_ptr<Material> m)
+{
 	center0 = cen0;
 	center1 = cen1;
 	time0 = t0;
@@ -298,11 +299,11 @@ bool MovingSphere::bounding_box(float t0, float t1, aabb& box) {
 
 
 
-Parallelogram::Parallelogram(const vec4& _ori, const vec4& _u, const vec4& _v, Material* mat) {
+Parallelogram::Parallelogram(const vec4& _ori, const vec4& _u, const vec4& _v, const std::shared_ptr<Material> m) {
 	ori = _ori;
 	u = _u; v = _v;
 	normal = vec4(cross(_u.toVec3(), _v.toVec3()).unit());
-	mp = mat;
+	mat_ptr = m;
 	dirty = true;
 }
 bool Parallelogram::hit(const ray& r, float t_min, float t_max, hit_record& rec) const {
@@ -327,7 +328,7 @@ bool Parallelogram::hit(const ray& r, float t_min, float t_max, hit_record& rec)
 	rec.u = u_val;
 	rec.v = v_val;
 	rec.t = t;
-	rec.mat_ptr = mp;
+	rec.mat_ptr = mat_ptr;
 	rec.p = hit_point;
 	rec.normal = normal;
 	return true;
@@ -358,8 +359,8 @@ vec4 Parallelogram::random(const vec4& o)const {
 }
 
 
-ConstantMedium::ConstantMedium(HitableObj* h, float d, Texture* p) :boundry(h), density(d) {
-	phase_function = new Isotropic(p);
+ConstantMedium::ConstantMedium(HitableObj* h, float d, std::shared_ptr<Texture> p) :boundry(h), density(d) {
+	phase_function = std::make_shared<Isotropic>(p);
 }
 bool ConstantMedium::hit(const ray& r, float t_min, float t_max, hit_record& rec) const {
 	//bool db = (randf() < 1e-5);

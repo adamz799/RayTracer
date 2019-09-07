@@ -42,10 +42,9 @@ vec4 color(const ray& r, const BVHNode *world, HitableObj *light_shape, int dept
 			else {
 				/*HitablePDF plight(light_shape, rec.p);
 				MixPDF p(&plight, srec.pdf_ptr);*/
-				PDF *p = srec.pdf_ptr;
+				auto p = srec.pdf_ptr;
 				ray scattered(rec.p, p->generate(), r.time());
 				float pdf = p->value(scattered.direction());
-				delete srec.pdf_ptr;
 				return emitted + srec.attenuation*rec.mat_ptr->scattering_pdf(r, rec, scattered) * color(scattered, world, light_shape, depth + 1) / pdf;
 			}
 		}
@@ -67,9 +66,14 @@ HitableList *random_scene()
 	int n = 500;
 	HitableObj **list = new HitableObj*[n + 1];
 
-	Texture *checker = new CheckerTexture(new ConstantTexture(vec3(0.2, 0.3, 0.5)), new ConstantTexture(vec3(0.9f)));
-	list[0] = new Parallelogram(vec4(-500, 0, 500), vec4(1000, 0, 0), vec4(0, -1e-5, -1000), new Lambertian(checker));
-	list[1] = new Parallelogram(vec4(-4.f, 2.8f, -5.f), vec4(6.f, 6.f, 0.f), vec4(0.0f, 0.0f, 6.0f), new DiffuseLight(new ConstantTexture(vec4(6.f))));
+	std::shared_ptr<Texture> even= std::make_shared<ConstantTexture>(vec3(0.2, 0.3, 0.5));
+	std::shared_ptr<Texture> odd(new ConstantTexture(vec3(0.9f)));
+	std::shared_ptr<Texture> checker = std::make_shared<CheckerTexture>(even, odd);
+	list[0] = new Parallelogram(vec4(-500, 0, 500), vec4(1000, 0, 0), vec4(0, -1e-5, -1000), std::make_shared<Lambertian>(checker));
+
+	std::shared_ptr<Texture> light = std::make_shared<ConstantTexture>(vec3(6.f));
+	list[1] = new Parallelogram(vec4(-4.f, 2.8f, -5.f), vec4(6.f, 6.f, 0.f), vec4(0.0f, 0.0f, 6.0f), std::make_shared<DiffuseLight>(light));
+
 	int i = 2;
 	for (int a = -7; a < 7; ++a)
 	{
@@ -82,28 +86,30 @@ HitableList *random_scene()
 				float radius = 0.15 + 0.05*randf();
 				if (choose_mat < 0.65)
 				{
-					list[i++] = new Sphere(center, radius, new Lambertian(new ConstantTexture(vec3(randf(), randf(), randf()))));
-
+					auto random_color = std::make_shared<ConstantTexture>(vec3(randf(), randf(), randf()));
+					list[i++] = new Sphere(center, radius, std::make_shared<Lambertian>(random_color));
 				}
 				else if (choose_mat < 0.85)
 				{
-					list[i++] = new Sphere(center, radius, new Metal(0.85f*(vec3(randf(), randf(), randf())), 0.4*randf()));
+					auto metal = std::make_shared<Metal>(0.85f * (vec3(randf(), randf(), randf())), 0.4 * randf());
+					list[i++] = new Sphere(center, radius, metal);
 				}
 				else
 				{
-					list[i++] = new Sphere(center, radius, new Dielectric(randf()*0.8f + 1.2f));
+					auto glass = std::make_shared<Dielectric>(randf() * 0.8f + 1.2f);
+					list[i++] = new Sphere(center, radius, glass);
 				}
 			}
 		}
 
 	}
 	float height = 1.0f;
-	list[i++] = new Sphere(vec4(0.f, height, 0.f), height, new Dielectric(1.5));
+	list[i++] = new Sphere(vec4(0.f, height, 0.f), height, std::make_shared<Dielectric>(1.5));
 	//list[i++] = new Sphere(vec4(-2.0f, height, 0.0f), height, new Lambertian(new ImageTexture("earth.jpg")));
-	HitableObj *obj = new Sphere(vec4(-2.0f, height, 0.0f), height, NULL);
-	list[i++] = new ConstantMedium(obj, 0.4f, new ConstantTexture(vec4(1.)));
-	list[i++] = new Sphere(vec3(0, height + 2, 0), 0.5*height, new DiffuseLight(new NoiseTexture(5.0)));
-	list[i++] = new Sphere(vec4(2.0f, height, 0.0f), height, new Metal(vec4(0.9f, 0.76f, 0.8f), 0.05f));
+	HitableObj *obj = new Sphere(vec4(-2.0f, height, 0.0f), height, nullptr);
+	list[i++] = new ConstantMedium(obj, 0.4f, odd);
+	list[i++] = new Sphere(vec3(0, height + 2, 0), 0.5*height, std::make_shared<DiffuseLight>(std::make_shared<NoiseTexture>(5.0)));
+	list[i++] = new Sphere(vec4(2.0f, height, 0.0f), height, std::make_shared<Metal>(vec4(0.9f, 0.76f, 0.8f), 0.05f));
 
 	return new HitableList(list, i);
 }
@@ -177,10 +183,7 @@ int WINAPI WinMain(HINSTANCE hinstance, HINSTANCE hprevinstance, LPSTR lpcmdline
 					if (col[i] > 1) { col[i] = 1; }
 				}
 				(*(buffer.ptr + offset)) = col;
-				/*(*(buffer.ptr + offset))[0] = col.r();
-				(*(buffer.ptr + offset))[1] = col.g();
-				(*(buffer.ptr + offset))[2] = col.b();*/
-
+				
 				//stop = time(NULL);
 				//printf("Use Time:%ld\n", (stop - start));
 				//std::cout << ir << " " << ig << " " << ib << "\n";

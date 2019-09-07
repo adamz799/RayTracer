@@ -1,6 +1,7 @@
 #pragma once
 
 #include <math.h>
+#include <memory>
 #include "vec.h"
 #include "Noise.h"
 #include "stb_image.h"
@@ -12,6 +13,7 @@
 class Texture {
 public:
 	virtual vec4 value(float u, float v, const vec4 &p) const = 0;
+	virtual ~Texture() {};
 };
 
 class ConstantTexture :public Texture {
@@ -27,9 +29,9 @@ public:
 
 class CheckerTexture : public Texture {
 public:
-	Texture * even, *odd;
+	std::shared_ptr<Texture> even, odd;
 	CheckerTexture() :even(nullptr), odd(nullptr) {}
-	CheckerTexture(Texture *t0, Texture *t1):even(t0), odd(t1) {}
+	CheckerTexture(std::shared_ptr<Texture> t0, std::shared_ptr<Texture> t1):even(t0), odd(t1) {}
 	
 	virtual vec4 value(float u, float v, const vec4 &p)const {
 		float sines = sin(10 * p.x())*sin(10 * p.y())*sin(10*p.z());
@@ -58,7 +60,7 @@ public:
 	unsigned char *image;
 	int width, height, nrChannels;
 
-	ImageTexture(){}
+	ImageTexture() :image(nullptr){}
 	ImageTexture(const char* file){
 		stbi_set_flip_vertically_on_load(true);
 

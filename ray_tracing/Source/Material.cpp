@@ -1,5 +1,6 @@
 #pragma once
 
+#include <memory>
 #include "Material.h"
 #include "vec.h"
 #include "ray.h"
@@ -8,12 +9,14 @@
 #include "texture.h"
 #include "pdf.h"
 
-Lambertian::Lambertian(Texture* a) : albedo(a) {};
+
+Lambertian::Lambertian(std::shared_ptr<Texture> a) : albedo(a) {};
 
 bool Lambertian::scatter(const ray& r_in, const hit_record& rec, scatter_record& srec)const {
 	srec.is_specular = false;
 	srec.attenuation = albedo->value(rec.u, rec.v, rec.p);
-	srec.pdf_ptr = new CosinePDF(rec.normal);
+	srec.pdf_ptr = std::make_shared<CosinePDF>(rec.normal);
+	//srec.pdf_ptr = new CosinePDF(rec.normal);
 	return true;
 }
 
@@ -32,7 +35,7 @@ bool Metal::scatter(const ray& r_in, const hit_record& rec, scatter_record& srec
 	srec.specular_ray = ray(rec.p, reflected + fuzz * random_in_unit_sphere());
 	srec.attenuation = albedo;
 	srec.is_specular = true;
-	srec.pdf_ptr = NULL;
+	srec.pdf_ptr = nullptr;
 	return true;
 
 }
@@ -87,7 +90,7 @@ bool Dielectric::scatter(const ray & r_in, const hit_record & rec, scatter_recor
 }
 
 
-DiffuseLight::DiffuseLight(Texture* a) : emit(a) {}
+DiffuseLight::DiffuseLight(std::shared_ptr<Texture> a) : emit(a) {}
 
 vec4 DiffuseLight::emitted(const ray& r, hit_record& rec, float u, float v, const vec4& p)const {
 	return emit->value(u, v, p);
@@ -96,7 +99,7 @@ vec4 DiffuseLight::emitted(const ray& r, hit_record& rec, float u, float v, cons
 
 
 
-Isotropic::Isotropic(Texture* a) :albedo(a) {};
+Isotropic::Isotropic(std::shared_ptr<Texture> a) :albedo(a) {};
 
 bool Isotropic::scatter(const ray& r_in, const hit_record& rec, scatter_record& srec)const {
 	srec.is_specular = true;

@@ -5,6 +5,7 @@
 #include <iostream>
 #include <windows.h>
 #include <WinUser.h>
+#include <memory>
 #include "vec.h"
 #include "ray.h"
 
@@ -29,7 +30,7 @@ struct hit_record {
 	float t;
 	vec4 p;
 	vec4 normal;
-	Material *mat_ptr;
+	std::shared_ptr<Material> mat_ptr;
 	float u, v;
 };
 
@@ -38,7 +39,8 @@ struct scatter_record {
 	ray specular_ray;
 	bool is_specular;
 	vec4 attenuation;
-	PDF *pdf_ptr;
+	std::shared_ptr<PDF> pdf_ptr;
+	//PDF *pdf_ptr;
 };
 
 class onb {
