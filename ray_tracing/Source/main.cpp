@@ -42,9 +42,9 @@ vec4 color(const ray& r, const BVHNode *world, HitableObj *light_shape, int dept
 			else {
 				/*HitablePDF plight(light_shape, rec.p);
 				MixPDF p(&plight, srec.pdf_ptr);*/
-				std::shared_ptr<PDF> p = srec.pdf_ptr;
-				ray scattered(rec.p, p->generate(), r.time());
-				float pdf = p->value(scattered.direction());
+				std::shared_ptr<PDF> pdf_ptr = srec.pdf_ptr;
+				ray scattered(rec.p, pdf_ptr->generate(), r.time());
+				float pdf = pdf_ptr->value(scattered.direction());
 				return emitted + srec.attenuation*rec.mat_ptr->scattering_pdf(r, rec, scattered) * color(scattered, world, light_shape, depth + 1) / pdf;
 			}
 		}
@@ -116,6 +116,13 @@ HitableList *random_scene()
 	return new HitableList(list, i);
 }
 
+char * test(){
+	char t[] = "gello, world!";
+	t[0] = 'H';
+	std::cout << t<<"\n";
+	return t;
+	
+}
 
 void writeToPPM(const Buffer &buffer, const char* name) {
 	FILE *f = fopen(name, "w");
@@ -147,6 +154,11 @@ int WINAPI WinMain(HINSTANCE hinstance, HINSTANCE hprevinstance, LPSTR lpcmdline
 	ShowWindow(device.hwnd, SW_SHOW);
 	UpdateWindow(device.hwnd);
 
+	char* tt = test();
+	auto ttt = tt;
+	printf("%s\n", ttt);
+	//std::cout << tt << "\n";
+	//printf("%0x\n", tt);
 	srand(static_cast <unsigned> (time(0)));
 
 	vec4 t1(1, 0.5, 0, 0), t2(0.2, 1, 0, 0);
